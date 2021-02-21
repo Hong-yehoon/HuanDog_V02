@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/user_icon"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="user"
+        android:layout_marginTop="5dp"
+        android:textSize="20dp"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="#57131309"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/myInfo"
+            android:layout_marginTop="1dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="내 정보"
+            android:background="#fff"
+            />
+        <Button
+            android:layout_marginTop="1dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="즐겨찾기 목록"
+            android:background="#fff"
+            />
+        <Button
+            android:id="@+id/myNotice"
+            android:layout_marginTop="1dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="공지사항"
+            android:background="#fff"
+            />
+        <Button
+            android:id="@+id/myOut"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="회원탈퇴"
+            android:background="#fff"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F7AEA7A7">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#CDD4FB"
+            
+            >
+            <TextView
+                android:id="@+id/hsgoal"
+                android:layout_marginLeft="40dp"
+                android:layout_width="180dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
+                android:text="1,300 m"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+            <TextView
+                android:layout_below="@+id/hsgoal"
+                android:layout_marginLeft="40dp"
+                android:layout_width="180dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:text="목표까지 200m 남았어요"
+                android:gravity="center"
+                />
+            
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/progress_icon"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/hsgoal"
+                />
+            
+            
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="1dp"
+            android:background="#fff"
+            >
+            <ImageView
+                android:id="@+id/imv01"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/clock_icon"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="40dp"
+
+                />
+
+            <TextView
+                android:id="@+id/tv01"
+                android:layout_toRightOf="@id/imv01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약된 산책"
+                android:textStyle="bold"
+                android:layout_marginLeft="30dp"
+                android:layout_centerHorizontal="true"
+                />
+            <TextView
+                android:id="@+id/tv02"
+                android:layout_toRightOf="@id/imv01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2021년 02월 01일"
+                android:textSize="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_below="@id/tv01"
+                />
+            <TextView
+                android:id="@+id/tv03"
+                android:layout_toRightOf="@id/tv02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13시 30분"
+                android:textSize="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@id/tv01"
+                />
+
+
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:background="#fff"
+            >
+            <ImageView
+                android:id="@+id/imv02"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/harness_icon"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="50dp"
+
+                />
+
+            <TextView
+                android:id="@+id/tv04"
+                android:layout_toRightOf="@id/imv02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="마지막 산책"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                android:layout_centerHorizontal="true"
+                />
+            <TextView
+                android:id="@+id/tv05"
+                android:layout_toRightOf="@id/imv02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2021년 02월 01일"
+                android:textSize="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_below="@id/tv04"
+                />
+            <TextView
+                android:id="@+id/tv06"
+                android:layout_toRightOf="@id/tv05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30분 00초"
+                android:textSize="18dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@id/tv04"
+                />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

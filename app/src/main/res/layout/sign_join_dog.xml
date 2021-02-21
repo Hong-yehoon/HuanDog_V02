@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageButton
+        android:id="@+id/jdBack"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/back_icon"
+        android:background="@android:color/transparent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="강아지 정보를 입력해주세요"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="*은 필수 입력"
+
+        />
+
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#fff"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        >
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_gravity="center"
+
+
+            >
+            <TextView
+
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="강아지등록번호 *"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/dRegNum"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:inputType="number"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#fff"
+
+
+            >
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="이름 *"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/dName"
+                android:layout_marginLeft="10dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_gravity="center"
+
+
+            >
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="나이"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/dAge"
+                android:layout_marginLeft="10dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_gravity="center"
+
+            >
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="강아지 종"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/dSort"
+                android:layout_marginLeft="10dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#fff"
+            android:orientation="horizontal"
+
+
+            >
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="성 별"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:id="@+id/dGender"
+                android:layout_marginLeft="10dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="ex) 남 or 여"
+                />
+
+            <!--<RadioGroup
+                android:id="@+id/dGender"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:onClick="RadioButtonClicked"
+                >
+
+
+                <RadioButton
+                    android:id="@+id/dF"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="여" />
+
+                <RadioButton
+                    android:id="@+id/dM"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="남" />
+
+
+            </RadioGroup>-->
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_gravity="center"
+
+            >
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="자주 가는 곳*"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+            <EditText
+                android:id="@+id/dPlace"
+                android:layout_marginLeft="10dp"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="ex) 신도림동"
+                />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/join"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="회원가입"
+
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>

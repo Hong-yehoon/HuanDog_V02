@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="horizontal"
+    >
+
+    <ImageView
+        android:layout_marginLeft="20dp"
+        android:id="@+id/htImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        />
+    <TextView
+        android:id="@+id/htName"
+        android:layout_toRightOf="@+id/htImage"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        />
+
+    <ImageButton
+        android:id="@+id/htHeart"
+        android:layout_below="@+id/htName"
+        android:layout_toRightOf="@+id/htImage"
+        android:src="@drawable/click"
+        android:scaleType="fitXY"
+        android:layout_marginTop="10dp"
+        android:layout_width="28dp"
+        android:layout_height="25dp"
+        android:background="@android:color/transparent"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+
+        />
+
+    <TextView
+        android:id="@+id/htTime"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="50dp"
+        android:gravity="center"
+        />
+
+</RelativeLayout>

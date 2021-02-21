@@ -1,0 +1,2 @@
+rootProject.name = "HuanDog_V02"
+include ':app'

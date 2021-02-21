@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageButton
+        android:id="@+id/inBack"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/back_icon"
+        android:background="@android:color/transparent"
+        />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/user_icon"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+
+        />
+    <TextView
+        android:id="@+id/ifUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="user"
+        android:layout_marginTop="5dp"
+        android:textSize="20dp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        >
+        <Button
+            android:id="@+id/human"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사람"
+            android:onClick="mOnclick"
+
+            />
+        <Button
+            android:id="@+id/dog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강아지"
+            android:onClick="mOnclick"
+            />
+
+    </LinearLayout>
+    <RelativeLayout
+
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#2DFF9800"
+        >
+
+
+    <RelativeLayout
+        android:id="@+id/HuLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="20dp"
+        >
+
+
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            >
+            <TableRow>
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="닉네임"
+                    />
+                <EditText
+                    android:id="@+id/inName"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="사용자 이름"
+                    />
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전화번호"
+
+                    />
+                <EditText
+                    android:id="@+id/inPhone"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="010-1234-5678"
+                    android:layout_marginLeft="10dp"
+                    />
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="주소"
+
+                    />
+                <EditText
+                    android:id="@+id/inAddr"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="서울시 구로구 "
+                    android:layout_marginLeft="10dp"
+                    />
+
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/inEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="abcdef@naver.com"
+                    android:layout_span="2"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    />
+
+
+            </TableRow>
+            <TableRow>
+                <Button
+                    android:layout_marginTop="10dp"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:text="저장"
+                    android:layout_span="2"
+
+                    />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/DogLayout"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="20dp"
+
+            >
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이름"
+                        />
+                    <EditText
+                        android:id="@+id/inDname"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="강아지 이름"
+                        />
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="나이"
+
+                        />
+                    <EditText
+                        android:id="@+id/inAge"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="8"
+                        android:layout_marginLeft="10dp"
+                        />
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="강아지 종"
+
+                        />
+                    <EditText
+                        android:id="@+id/inSort"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="말티즈"
+                        android:layout_marginLeft="10dp"
+                        />
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/inNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12500001234"
+                        android:layout_span="2"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        />
+
+
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:text="저장"
+                        android:layout_span="2"
+
+                        />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>
