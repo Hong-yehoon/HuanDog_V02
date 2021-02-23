@@ -40,7 +40,7 @@ public class MainFragMypage02 extends Fragment {
             }
         });
 
-        Button myInfo = (Button)viewGroup.findViewById(R.id.myInfo);
+       Button myInfo = (Button)viewGroup.findViewById(R.id.myInfo);
        myInfo.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {

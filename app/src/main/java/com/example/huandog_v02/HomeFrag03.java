@@ -34,8 +34,6 @@ public class HomeFrag03 extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -65,10 +63,8 @@ public class HomeFrag03 extends Fragment {
             day02.setText(tt);
         }
 
-
         cur.close();
         helper.close();
-
 
         long now = System.currentTimeMillis();
         Date mDate = new Date(now);
@@ -85,7 +81,6 @@ public class HomeFrag03 extends Fragment {
 
                 int mhour = c.get(Calendar.HOUR_OF_DAY);
                 int minute = c.get(Calendar.MINUTE);
-
 
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(

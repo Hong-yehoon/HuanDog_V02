@@ -28,6 +28,7 @@ public class StartActivity extends AppCompatActivity {
 
     TextView time;
     Button stop;
+
     private Boolean isRunning = true;
     private Thread timeThread = null;
 
@@ -111,21 +112,6 @@ public class StartActivity extends AppCompatActivity {
                        walkDay = simpleDate.format(mDate);
                        walkTime = time.getText().toString();
 
-                       /*values = new ContentValues();
-
-                       values.put("walkTime",walkTime);
-                        values.put("walkDay",walkDay);
-                        sqlDB.insert("walk",null,values);
-
-                        values = new ContentValues();
-                        values.put("name",mEditName.getText().toString());
-                        values.put("age",mEditAge.getText().toString());
-
-                        db.insert("people",null, values);
-
-                        db.close();*/
-
-                        int id = 1;
 
                        helper.insertTime(sqlDB, walkTime, walkDay);
                        sqlDB.close();
@@ -160,7 +146,6 @@ public class StartActivity extends AppCompatActivity {
             time.setText(result);
 
 
-
         }
     };
 
@@ -170,7 +155,7 @@ public class StartActivity extends AppCompatActivity {
             int i = 0;
 
             while (true) {
-                while (isRunning) { //일시정지를 누르면 멈춤
+                while (isRunning) {  //Stop를 누르면 멈춤
                     Message msg = new Message();
                     msg.arg1 = i++;
                     handler.sendMessage(msg);

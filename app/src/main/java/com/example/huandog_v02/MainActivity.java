@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         start = (Button)findViewById(R.id.mStart);
 
-         intent= new Intent(MainActivity.this,StartCount.class);
+        intent= new Intent(MainActivity.this,StartCount.class);
 
-       start.setOnClickListener(new View.OnClickListener() {
+        start.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

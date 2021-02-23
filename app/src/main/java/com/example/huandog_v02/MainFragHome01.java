@@ -14,7 +14,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainFragHome01 extends Fragment {
 
-     TabLayout tablayout;
+    TabLayout tablayout;
     ViewPager viewPager;
     FragmentAdapter fragmentadapter;
 
@@ -22,9 +22,7 @@ public class MainFragHome01 extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +37,6 @@ public class MainFragHome01 extends Fragment {
         viewPager = (ViewPager)viewGroup.findViewById(R.id.homeviewPager);
 
         //이거 몬지 하나드 모르겟다
-       //fragmentadapter = new FragmentAdapter(getActivity().getSupportFragmentManager(),tablayout.getTabCount());
         fragmentadapter = new FragmentAdapter(getFragmentManager(),tablayout.getTabCount());
         viewPager.setAdapter(fragmentadapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tablayout));
