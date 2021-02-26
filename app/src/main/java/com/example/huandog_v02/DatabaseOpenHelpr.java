@@ -5,7 +5,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
+//수정 테스트 
 class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     public static final String table01 = "human";
