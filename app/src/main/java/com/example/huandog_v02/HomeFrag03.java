@@ -1,11 +1,14 @@
 package com.example.huandog_v02;
 
+import android.app.NotificationManager;
 import android.app.TimePickerDialog;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.TimePicker;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -29,6 +33,19 @@ public class HomeFrag03 extends Fragment {
 
     String sql;
     Cursor cur;
+
+    //시간 예약 푸시 알림
+    int mhour;
+    int minute;
+
+    Date nowTime;
+    Date selTime;
+
+    NotificationManager manager;
+
+    private static String CHANNEL_ID = "channel1";
+    private static String CHANNEL_NAME = "Channel1";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,18 +86,33 @@ public class HomeFrag03 extends Fragment {
         long now = System.currentTimeMillis();
         Date mDate = new Date(now);
         SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy"+"년"+"MM"+"월"+"dd"+"일");
-        String getTime = simpleDate.format(mDate);
+        String getDay = simpleDate.format(mDate);
 
+
+        //푸시 알림쓰기 위한 시간 포맷 변경
+        Date pushDate = new Date(now);
+        SimpleDateFormat pushDate_Time = new SimpleDateFormat("k:mm"); // k는 our in day 24시간
+
+        String getpushTime = pushDate_Time.format(pushDate);
+
+        try {
+
+            nowTime = pushDate_Time.parse(getpushTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+        //시간 예약
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar c= Calendar.getInstance();
-                /*int myear = c.get(Calendar.YEAR);
-                int mmonth = c.get(Calendar.MONTH+1);
-                int mday = c.get(Calendar.DAY_OF_MONTH);*/
 
-                int mhour = c.get(Calendar.HOUR_OF_DAY);
-                int minute = c.get(Calendar.MINUTE);
+                mhour = c.get(Calendar.HOUR_OF_DAY);
+                minute = c.get(Calendar.MINUTE);
+
 
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(
@@ -88,16 +120,35 @@ public class HomeFrag03 extends Fragment {
                 @Override
                 public void onTimeSet(TimePicker view, int h, int m) {
 
-                   day01.setText(getTime);
+                   day01.setText(getDay);
                    timeView01.setText(h+"시"+m+"분");
+                   String e = h+":"+m;
+
+                    try {
+                       selTime = pushDate_Time.parse(e);
+                    } catch (ParseException parseException) {
+                        parseException.printStackTrace();
+                    }
 
                 }
             }
-                    ,mhour,minute,true);
+                    , mhour, minute,true);
             timePickerDialog.show();
             }
         });
 
+        /*long diff = nowTime.getTime() - selTime.getTime();
+        long min = diff/60000;
+
+        if (min <= 10){
+            Log.d("tag","10분전");
+        }*/
+
         return view;
+
+
     }
+
+
 }
+
