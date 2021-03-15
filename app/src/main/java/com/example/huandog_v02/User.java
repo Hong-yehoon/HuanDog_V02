@@ -12,11 +12,10 @@ public class User {
 
    }
 
-   public User(String userEmail, String userPass, String userName, String userPhone, String userAddr ){
+   public User(String userEmail, String userPass, String userName, String userAddr ){
        this.userEmail = userEmail;
        this.userPass = userPass;
        this.userName = userName;
-       this.userPhone = userPhone;
        this.userAddr = userAddr;
 
    }
@@ -45,14 +44,6 @@ public class User {
         this.userName = userName;
     }
 
-    public String getUserPhone() {
-        return userPhone;
-    }
-
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
-    }
-
     public String getUserAddr() {
         return userAddr;
     }
@@ -67,7 +58,6 @@ public class User {
                 "userEmail='" + userEmail + '\'' +
                 ", userPass='" + userPass + '\'' +
                 ", userName='" + userName + '\'' +
-                ", userPhone='" + userPhone + '\'' +
                 ", userAddr='" + userAddr + '\'' +
                 '}';
     }
