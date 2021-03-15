@@ -60,7 +60,6 @@ public class InfoPage extends AppCompatActivity {
         });
 
 
-
         human = (Button)findViewById(R.id.human);
         dog = (Button)findViewById(R.id.dog);
         hulayout = (RelativeLayout)findViewById(R.id.HuLayout);
