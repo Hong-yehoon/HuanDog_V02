@@ -114,7 +114,7 @@ public class Joinpage extends AppCompatActivity {
         });
 
     }
-    private void writeUser ( String userId, String userEmail, String userPass, String userName, String userAddr){
+    private void writeUser (String userId, String userEmail, String userPass, String userName, String userAddr){
 
         user = new User(userEmail, userPass, userName, userAddr);
 

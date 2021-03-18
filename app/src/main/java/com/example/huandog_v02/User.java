@@ -1,17 +1,35 @@
 package com.example.huandog_v02;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class User {
 
     public String userEmail;
     public String userPass;
     public String userName;
-    public String userPhone;
     public String userAddr;
 
-   public User(){
+    public Map<String, Object> info = new HashMap<>();
+
+    public Map<String, Object> getInfo() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("userEmail",userEmail);
+        result.put("userPass", userPass);
+        result.put("userName",userName);
+        result.put("userAddr",userAddr);
+        return info;
+    }
+
+    public User(){
 
    }
 
+   public User(String userEmail,String userName, String userAddr ){
+       this.userEmail = userEmail;
+       this.userName = userName;
+       this.userAddr = userAddr;
+   }
    public User(String userEmail, String userPass, String userName, String userAddr ){
        this.userEmail = userEmail;
        this.userPass = userPass;
