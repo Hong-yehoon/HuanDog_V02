@@ -50,6 +50,8 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.start_activity);
 
        intent = new Intent(StartActivity.this,MainActivity.class);
+       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
         time = (TextView)findViewById(R.id.timeView);
         stop = (Button)findViewById(R.id.sStop);
 

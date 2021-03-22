@@ -41,7 +41,7 @@ public class Loginpage extends AppCompatActivity {
 
     //자동로그인에 저장할 값
     String loginEmail, loginPass;
-    SharedPreferences autoLogin;
+    SharedPreferences auto;
 
 
     @Override
@@ -57,19 +57,13 @@ public class Loginpage extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference();
 
         //자동 로그인
-        //autoLogin = getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
-        //loginEmail = autoLogin.getString("inputEmail",null);
-        //loginPass = autoLogin.getString("inputPass",null);
+        auto = getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
 
-        /*if(loginEmail != null && loginPass != null){
+        loginEmail = auto.getString("inputEmail",null);
+        loginPass = auto.getString("inputPass",null);
 
-            //Toast.makeText(getApplicationContext(),userEmail+"로 자동로그인",Toast.LENGTH_SHORT).show();
+        if(loginEmail == null && loginPass == null){
 
-            //Intent intentAuto = new Intent(getApplicationContext(),InfoPage.class);
-            //startActivity(intentAuto);
-
-
-        }else{
             login.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -88,62 +82,57 @@ public class Loginpage extends AppCompatActivity {
 
                 }
             });
-        }*/
 
-        login.setOnClickListener(new View.OnClickListener() {
+        }else{
+            Toast.makeText(getApplicationContext(),loginEmail+"로 자동로그인",Toast.LENGTH_SHORT).show();
 
-            @Override
-            public void onClick(View view) {
+            intent = new Intent(Loginpage.this,InfoPage.class);
+            loginSuccess = true;
 
-                userEmail = Lemail.getText().toString();
-                userPass = Lpass.getText().toString();
+            intent.putExtra("userEmail",loginEmail);
+            intent.putExtra("loginS",loginSuccess);
+            startActivity(intent);
+            finish();
 
-                if(userEmail.length() > 0 && userPass.length() >0) {
-                    readUser(userEmail,userPass);
+        }
 
-                } else {
-                    Toast.makeText(getApplicationContext(),"아이디와 비밀번호는 필수사항입니다.",Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
     }
     private void readUser(String Email, String Pass) {
 
         database.child("users").child(Email).addValueEventListener(new ValueEventListener() {
+            User post;
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                post = snapshot.getValue(User.class);
                 if(snapshot.getValue(User.class) != null){
-                    User post = snapshot.getValue(User.class);
                     Log.w("User" , post.toString());
+
                     if(post.getUserPass().equals(Pass)){
-                        Toast.makeText(getApplicationContext(),"로그인 되었습니다",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),Email+"로 로그인 되었습니다",Toast.LENGTH_SHORT).show();
 
-                       //SharedPreferences.Editor auto = autoLogin.edit();
-                        //auto.putString("inputEmail",Email);
-                        //auto.putString("inputPass",Pass);
-                        //auto.commit();
+                        SharedPreferences.Editor autoLogin = auto.edit();
+                        autoLogin.putString("inputEmail",Email);
+                        autoLogin.putString("inputPass",Pass);
+                        autoLogin.commit();
 
-                        intent = new Intent(getApplicationContext(),InfoPage.class);
+                        intent = new Intent(Loginpage.this,InfoPage.class);
+
                         loginSuccess = true;
 
                         intent.putExtra("userEmail",Lemail.getText().toString());
                         intent.putExtra("loginS",loginSuccess);
                         startActivity(intent);
+                        finish();
 
-
-                    }else{
+                    }else {
                         Toast.makeText(getApplicationContext(),"비밀번호 오류",Toast.LENGTH_SHORT).show();
-                        loginSuccess = false;
-                        intent.putExtra("loginF",loginSuccess);
+
+                        if (!post.getUserEmail().equals(Email)) {
+                            Toast.makeText(getApplicationContext(), "가입되지 않은 이메일입니다.", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
-
-                }else{
-                    Toast.makeText(getApplicationContext(),"가입되지 않은 이메일입니다.",Toast.LENGTH_SHORT).show();
-
-                    loginSuccess = false;
-                    intent.putExtra("loginF",loginSuccess);
                 }
             }
 
@@ -154,5 +143,6 @@ public class Loginpage extends AppCompatActivity {
         });
 
     }
+
 
 }

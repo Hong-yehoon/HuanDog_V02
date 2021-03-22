@@ -21,17 +21,6 @@ public class Mypage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainfrag02_mypage);
 
-        myNotice = (Button)findViewById(R.id.myNotice);
-        myOut = (Button)findViewById(R.id.myOut);
-
-        myNotice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent01 = new Intent(Mypage.this,Notice.class);
-                startActivity(intent01);
-            }
-        });
-
     }
 }
 

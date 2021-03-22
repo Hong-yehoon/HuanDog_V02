@@ -1,24 +1,12 @@
 package com.example.huandog_v02;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
+
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -29,9 +17,8 @@ public class HomeFrag04 extends Fragment {
     ListView list;
 
 
-    private static CustomAdapter01 customAdapter01;
-
     ViewGroup viewGroup;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +32,7 @@ public class HomeFrag04 extends Fragment {
         dogs.add(new Dogs("밤이",getResources().getDrawable(R.drawable.dog05),"45 분"));
 
         list = (ListView)viewGroup.findViewById(R.id.htList);
-        customAdapter01 = new CustomAdapter01(getContext(),dogs);
+        CustomAdapter01 customAdapter01 = new CustomAdapter01(getContext(), dogs);
         list.setAdapter(customAdapter01);
 
         return viewGroup;
@@ -60,9 +47,9 @@ public class HomeFrag04 extends Fragment {
 
 }
 class Dogs {
-    private String name;
-    private Drawable image;
-    private String time;
+    private final String name;
+    private final Drawable image;
+    private final String time;
 
     public Dogs (String name, Drawable image, String time){
         this.name = name;
@@ -84,22 +71,3 @@ class Dogs {
     }
 }
 
-/*
-
-class list extends AppCompatActivity{
-
-    Button hbtn = (Button)findViewById(R.id.htHeart);
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_timeline_listview);
-
-    }
-
-    public void hClick(){
-
-        hbtn.setBackgroundResource(R.drawable.heart_red);
-    }
-}
-*/

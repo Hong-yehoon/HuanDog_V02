@@ -1,16 +1,14 @@
 package com.example.huandog_v02;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,59 +24,47 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class InfoPage extends AppCompatActivity {
 
     ImageButton back;
-    Button human, dog, save;
-    RelativeLayout hulayout, doglayout;
 
-    DatabaseOpenHelper dbhelper01, dbhelper02;
+    Button logoutBtn, save;
 
-    SQLiteDatabase sqlDB;
+    String name, addr, pass;
 
-    String name, addr;
-    Cursor cur;
-
-    EditText inName, inPhone, inAddr,  inDname, inSort, inAge, inNum;
+    EditText inName, inPass, inAddr;
 
     TextView inEmail;
 
-    boolean loginSession;
     String email;
 
+
     private DatabaseReference database;
+
+    SharedPreferences autoLogin;
+    SharedPreferences.Editor editor;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_human);
 
-        //dbhelper01 = new DatabaseOpenHelper(InfoPage.this, DatabaseOpenHelper.table01,null,1);
-        //dbhelper02 = new DatabaseOpenHelper(InfoPage.this, DatabaseOpenHelper.table02,null,1);
-
         database = FirebaseDatabase.getInstance().getReference();
 
-
         inName = (EditText)findViewById(R.id.inName);
-        inPhone = (EditText)findViewById(R.id.inPhone);
+        inPass = (EditText)findViewById(R.id.inPass);
         inAddr = (EditText)findViewById(R.id.inAddr);
-        inDname = (EditText)findViewById(R.id.inDname);
-        inSort = (EditText)findViewById(R.id.inSort);
-        inAge = (EditText)findViewById(R.id.inAge);
         inEmail = (TextView)findViewById(R.id.inEmail);
 
         save = (Button)findViewById(R.id.saveBtn1);
+        logoutBtn = (Button)findViewById(R.id.logoutBtn);
 
         name = inName.getText().toString();
         addr = inAddr.getText().toString();
+        pass = inPass.getText().toString();
 
-        loginSession = getIntent().getBooleanExtra("LoginS",true);
         email = getIntent().getStringExtra("userEmail");
 
-
-        if(loginSession==true)
             database.child("users").child(email).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -89,77 +75,70 @@ public class InfoPage extends AppCompatActivity {
 
                         inEmail.setText(userInfo.getUserEmail());
                         inName.setText(userInfo.getUserName());
-
+                        inPass.setText(userInfo.getUserPass());
+                        inAddr.setText(userInfo.getUserAddr());
                     }
-
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
             });
 
-        back = (ImageButton)findViewById(R.id.inBack);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MainFragMypage02.class);
-                startActivity(intent);
-
-                finish();
-
-
-            }
-        });
-
-        human = (Button)findViewById(R.id.human);
-        dog = (Button)findViewById(R.id.dog);
-        hulayout = (RelativeLayout)findViewById(R.id.HuLayout);
-        doglayout = (RelativeLayout)findViewById(R.id.DogLayout);
-        doglayout.setVisibility(View.INVISIBLE);
-
-        if(loginSession==true){
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-                    infoUpdate(email,name,addr);
+                    infoUpdate(email,pass,name,addr);
+
                 }
             });
-        }
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                autoLogin = getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
+                editor = autoLogin.edit();
+                editor.clear();
+                editor.commit();
+
+                Toast.makeText(getApplicationContext(),"로그아웃",Toast.LENGTH_SHORT).show();
+                onBackPressed();
+
+            }
+        });
 
     }
 
-   public void mOnclick (View view){
-    switch (view.getId()){
+    private void infoUpdate (String userEmail, String userPass, String userName, String userAddr ){
 
-        case R.id.human:
-            doglayout.setVisibility(View.INVISIBLE);
-            hulayout.setVisibility(View.VISIBLE);
+        User update = new User(userEmail, userPass, userName, userAddr);
+        database.child("user").child(email).setValue(update).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(getApplicationContext(),"정보가 수정되었습니다.",Toast.LENGTH_SHORT).show();
+                inEmail.setText(email);
+                inName.setText(name);
+                inPass.setText(pass);
+                inAddr.setText(addr);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(),"다시 시도해주세요",Toast.LENGTH_SHORT).show();
+            }
+        });
 
-           /* sql = "SELECT email FROM "+ dbhelper01.table01 + " WHERE email = '"+email+"'";
-            cur = sqlDB.rawQuery(sql,null);
-            cur.moveToNext();*/
-
-            break;
-
-
-
-        case R.id.dog:
-            hulayout.setVisibility(View.INVISIBLE);
-            doglayout.setVisibility(View.VISIBLE);
-            break;
-
-        }
 
     }
 
-    private void infoUpdate (String userEmail, String userName, String userAddr ){
-        String key = database.child("users").push().getKey();
-        User update = new User(userEmail,userName,userAddr);
-        Map<String, Object> userValues = update.getInfo();
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

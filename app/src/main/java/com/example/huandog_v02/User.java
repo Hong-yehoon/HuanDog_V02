@@ -25,11 +25,7 @@ public class User {
 
    }
 
-   public User(String userEmail,String userName, String userAddr ){
-       this.userEmail = userEmail;
-       this.userName = userName;
-       this.userAddr = userAddr;
-   }
+
    public User(String userEmail, String userPass, String userName, String userAddr ){
        this.userEmail = userEmail;
        this.userPass = userPass;

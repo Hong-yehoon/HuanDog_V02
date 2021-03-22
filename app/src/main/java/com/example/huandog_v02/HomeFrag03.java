@@ -2,6 +2,7 @@ package com.example.huandog_v02;
 
 import android.app.NotificationManager;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
@@ -52,6 +54,8 @@ public class HomeFrag03 extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override

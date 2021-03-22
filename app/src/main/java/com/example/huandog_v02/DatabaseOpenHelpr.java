@@ -20,8 +20,6 @@ class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i("tag","db 생성_db가 없을때만 최초로 실행함");
-        createTable(db);
-        createTabled(db);
         createTableTime(db);
     }
 
