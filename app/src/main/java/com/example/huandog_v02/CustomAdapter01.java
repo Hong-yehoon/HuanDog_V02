@@ -48,7 +48,6 @@ public class CustomAdapter01 extends ArrayAdapter {
         viewHolder.tv_time.setText(dogs.getTime());
         viewHolder.im_image.setImageDrawable(dogs.getImage());
 
-
         return convertView;
 
     }

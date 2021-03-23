@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,10 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentTransaction transaction;
 
-    Switch walk;
-    Switch gps;
-    Button go;
-    Button start;
+    Switch walk, gps;
+    Button go, start;
 
     Intent intent;
     boolean walkFlag  =false;
@@ -53,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Dialog startDialog = new Dialog(MainActivity.this);
                 startDialog.setContentView(R.layout.start_dialog);
-                startDialog.setTitle("산책조와");
+                startDialog.setTitle("산책 세팅 다이얼로그");
 
                 walk = (Switch)startDialog.findViewById(R.id.sdWalk);
                 gps = (Switch)startDialog.findViewById(R.id.sdGPS);
@@ -106,21 +102,12 @@ public class MainActivity extends AppCompatActivity {
        start.setVisibility(View.VISIBLE);
        transaction.replace(R.id.frame_container, frag01).commitAllowingStateLoss();
 
-
-        //frag02 = new MainFragMypage02();
-        /*FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
-
-        ft.replace(R.id.frame_container, new MainFragHome01(),"one");
-        ft.commitAllowingStateLoss();*/
     }
 
     public void setFrag02(View v) {
 
         transaction = manager.beginTransaction();
-
         transaction.replace(R.id.frame_container, frag02).commitAllowingStateLoss();
-
         start.setVisibility(View.INVISIBLE);
     }
 

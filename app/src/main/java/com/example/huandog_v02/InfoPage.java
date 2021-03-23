@@ -1,14 +1,13 @@
 package com.example.huandog_v02;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class InfoPage extends AppCompatActivity {
 
-    ImageButton back;
 
     Button logoutBtn, save;
 
@@ -59,11 +57,9 @@ public class InfoPage extends AppCompatActivity {
         save = (Button)findViewById(R.id.saveBtn1);
         logoutBtn = (Button)findViewById(R.id.logoutBtn);
 
-        name = inName.getText().toString();
-        addr = inAddr.getText().toString();
-        pass = inPass.getText().toString();
-
-        email = getIntent().getStringExtra("userEmail");
+        autoLogin = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
+        email = autoLogin.getString("inputEmail", "");
+        //email = getIntent().getStringExtra("userEmail");
 
             database.child("users").child(email).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -85,16 +81,22 @@ public class InfoPage extends AppCompatActivity {
                 }
             });
 
+            //******************** 데이터 업데이트**************
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    name = inName.getText().toString();
+                    addr = inAddr.getText().toString();
+                    pass = inPass.getText().toString();
 
                     infoUpdate(email,pass,name,addr);
 
                 }
             });
 
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            //******************** 로그아웃 ***************
+            logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -114,14 +116,10 @@ public class InfoPage extends AppCompatActivity {
     private void infoUpdate (String userEmail, String userPass, String userName, String userAddr ){
 
         User update = new User(userEmail, userPass, userName, userAddr);
-        database.child("user").child(email).setValue(update).addOnSuccessListener(new OnSuccessListener<Void>() {
+        database.child("users").child(userEmail).setValue(update).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 Toast.makeText(getApplicationContext(),"정보가 수정되었습니다.",Toast.LENGTH_SHORT).show();
-                inEmail.setText(email);
-                inName.setText(name);
-                inPass.setText(pass);
-                inAddr.setText(addr);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -130,13 +128,8 @@ public class InfoPage extends AppCompatActivity {
             }
         });
 
-
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();

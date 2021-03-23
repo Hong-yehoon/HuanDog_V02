@@ -23,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Joinpage extends AppCompatActivity {
 
     Button next;
-    ImageButton back;
     EditText jemail, jname, jpass, jpassChk, jaddr;
 
     User user;
@@ -44,17 +43,16 @@ public class Joinpage extends AppCompatActivity {
         jpassChk = (EditText)findViewById(R.id.jPassChk);
         jaddr = (EditText)findViewById(R.id.jAddr);
 
-        back = (ImageButton)findViewById(R.id.joinBack);
-
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // *************DB*****************
                 getEmail = jemail.getText().toString();
                 getPass = jpass.getText().toString();
                 getPassChk = jpassChk.getText().toString();
-                getName = jpass.getText().toString();
+                getName = jname.getText().toString();
                 getAddr = jaddr.getText().toString();
 
                 if(getEmail.length() > 0 && getPass.length() > 0

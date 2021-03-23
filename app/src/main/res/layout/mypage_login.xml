@@ -5,13 +5,7 @@
     android:layout_height="match_parent"
     android:padding="20dp">
 
-    <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/back_icon"
-        android:background="@android:color/transparent"
-        />
+
 
     <TextView
         android:layout_width="wrap_content"

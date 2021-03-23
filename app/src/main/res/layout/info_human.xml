@@ -5,14 +5,7 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-    <ImageButton
-        android:id="@+id/inBack"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/back_icon"
-        android:background="@android:color/transparent"
-        />
+
 
     <ImageView
         android:layout_width="100dp"

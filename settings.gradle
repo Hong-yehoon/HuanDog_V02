@@ -1,2 +1,2 @@
-rootProject.name = "HuanDog_V02"
+rootProject.name = "HuanDog"
 include ':app'
