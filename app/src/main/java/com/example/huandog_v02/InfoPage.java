@@ -1,137 +1,97 @@
 package com.example.huandog_v02;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 public class InfoPage extends AppCompatActivity {
 
+    ImageButton back;
+    Button human, dog;
+    RelativeLayout hulayout, doglayout;
 
-    Button logoutBtn, save;
+    DatabaseOpenHelper dbhelper01, dbhelper02;
 
-    String name, addr, pass;
+    SQLiteDatabase sqlDB;
 
-    EditText inName, inPass, inAddr;
+    String sql;
+    Cursor cur;
 
-    TextView inEmail;
+    EditText inName, inPhone, inAddr, inEmail, inDname, inSort, inAge, inNum;
 
-    String email;
-
-
-    private DatabaseReference database;
-
-    SharedPreferences autoLogin;
-    SharedPreferences.Editor editor;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_human);
 
-        database = FirebaseDatabase.getInstance().getReference();
+        dbhelper01 = new DatabaseOpenHelper(InfoPage.this, DatabaseOpenHelper.table01,null,1);
+        dbhelper02 = new DatabaseOpenHelper(InfoPage.this, DatabaseOpenHelper.table02,null,1);
 
         inName = (EditText)findViewById(R.id.inName);
-        inPass = (EditText)findViewById(R.id.inPass);
+        inPhone = (EditText)findViewById(R.id.inPhone);
         inAddr = (EditText)findViewById(R.id.inAddr);
-        inEmail = (TextView)findViewById(R.id.inEmail);
+        inDname = (EditText)findViewById(R.id.inDname);
+        inSort = (EditText)findViewById(R.id.inSort);
+        inAge = (EditText)findViewById(R.id.inAge);
 
-        save = (Button)findViewById(R.id.saveBtn1);
-        logoutBtn = (Button)findViewById(R.id.logoutBtn);
 
-        autoLogin = getSharedPreferences("autoLogin", Context.MODE_PRIVATE);
-        email = autoLogin.getString("inputEmail", "");
-        //email = getIntent().getStringExtra("userEmail");
-
-            database.child("users").child(email).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                    if (snapshot.getValue(User.class) != null) {
-                        User userInfo = snapshot.getValue(User.class);
-                        Log.w("Usera", userInfo.toString());
-
-                        inEmail.setText(userInfo.getUserEmail());
-                        inName.setText(userInfo.getUserName());
-                        inPass.setText(userInfo.getUserPass());
-                        inAddr.setText(userInfo.getUserAddr());
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-            //******************** 데이터 업데이트**************
-            save.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    name = inName.getText().toString();
-                    addr = inAddr.getText().toString();
-                    pass = inPass.getText().toString();
-
-                    infoUpdate(email,pass,name,addr);
-
-                }
-            });
-
-            //******************** 로그아웃 ***************
-            logoutBtn.setOnClickListener(new View.OnClickListener() {
+        back = (ImageButton)findViewById(R.id.inBack);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),MainFragMypage02.class);
+                startActivity(intent);
 
-                autoLogin = getSharedPreferences("autoLogin", Activity.MODE_PRIVATE);
-                editor = autoLogin.edit();
-                editor.clear();
-                editor.commit();
+                finish();
 
-                Toast.makeText(getApplicationContext(),"로그아웃",Toast.LENGTH_SHORT).show();
-                onBackPressed();
 
             }
         });
 
-    }
 
-    private void infoUpdate (String userEmail, String userPass, String userName, String userAddr ){
+        human = (Button)findViewById(R.id.human);
+        dog = (Button)findViewById(R.id.dog);
+        hulayout = (RelativeLayout)findViewById(R.id.HuLayout);
+        doglayout = (RelativeLayout)findViewById(R.id.DogLayout);
 
-        User update = new User(userEmail, userPass, userName, userAddr);
-        database.child("users").child(userEmail).setValue(update).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(getApplicationContext(),"정보가 수정되었습니다.",Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),"다시 시도해주세요",Toast.LENGTH_SHORT).show();
-            }
-        });
+        doglayout.setVisibility(View.INVISIBLE);
+
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+   public void mOnclick (View view){
+    switch (view.getId()){
+
+        case R.id.human:
+            doglayout.setVisibility(View.INVISIBLE);
+            hulayout.setVisibility(View.VISIBLE);
+
+           /* sql = "SELECT email FROM "+ dbhelper01.table01 + " WHERE email = '"+email+"'";
+            cur = sqlDB.rawQuery(sql,null);
+            cur.moveToNext();*/
+
+            break;
+
+
+
+        case R.id.dog:
+            hulayout.setVisibility(View.INVISIBLE);
+            doglayout.setVisibility(View.VISIBLE);
+            break;
+
+        }
+
     }
+
 }

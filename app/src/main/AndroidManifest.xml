@@ -19,9 +19,11 @@
         </activity>
         <activity android:name=".MainActivity"/>
 
+
         <activity android:name=".Notice"/>
         <activity android:name=".Loginpage"/>
         <activity android:name=".Joinpage"/>
+
         <activity android:name=".InfoPage"/>
         <activity android:name=".StartActivity"/>
         <activity android:name=".StartCount"/>
